@@ -18,4 +18,4 @@ Ejecuta el script en la terminal con los siguientes parámetros:
 python ani-pyEs.py $NombreAnime $NumeroCapitulo
 ```
 # DISCLAIMER
-En estoos momentos es solo una versión incial que requiere trabajo para poderencontrarlos capítulos como es debido. Solo lo he testeado con un par de animes.
+En estos momentos es solo una versión incial que requiere trabajo para poder encontrar los capítulos como es debido. Solo lo he testeado con un par de animes.
