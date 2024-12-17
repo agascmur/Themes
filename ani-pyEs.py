@@ -48,9 +48,9 @@ def view_video_link_on_browser(video_link, referer):
     except Exception as e:
         print(f"No se pudo reproducir el video en {video_link}. Error: {e}")
     
-def scrap_video_link(video_id, episode_id, referer):
+def scrap_video_link(name_id, episode_id, referer):
     # Crear la URL usando los parámetros proporcionados | adaptada a animeflv
-    url_page = f"https://www3.animeflv.net/ver/{video_id}-{episode_id}"
+    url_page = f"https://www3.animeflv.net/ver/{name_id}-{episode_id}"
     print("URL generada:", url_page)
 
     # Extraer JSON con enlaces, la clave aquí es que todos los videos se encuentran dentro de el tag script
@@ -90,18 +90,26 @@ def scrap_video_link(video_id, episode_id, referer):
         
         time.sleep(1)
 
+def search_anime_ids(name):
+    
+    return("Berserk")
 
 ######################################## MAIN ########################################
 def main():
     if len(sys.argv) != 3:
-        print("Se deben proporcionar dos parámetros: video_id y episode_id")
+        print("Se deben proporcionar dos parámetros: name_id y episode_id")
         sys.exit(1)
         
-    video_id = sys.argv[1]
+    #name_id = sys.argv[1]
     episode_id = sys.argv[2]
+    name = sys.argv[1]
     referer = "https://www3.animeflv.net"
 
-    scrap_video_link(video_id, episode_id, referer)
+    # TBD - Solo un arg para el nombre -> devuelve name_id
+    name_id = search_anime_ids(name)
+    # TBD - Consulta el numero de capitulo a ver -> devuelve episode_id
+    
+    scrap_video_link(name_id, episode_id, referer)
 
 if __name__ == "__main__":
     main()
