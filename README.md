@@ -1,5 +1,4 @@
 # Dependencias
-
 - **Firefox**: Asegúrate de tener Firefox instalado en tu sistema para poder reproducir los videos.
 - **Python**: Debes tener Python instalado.
   - **BeautifulSoup4**: Se usa para analizar y extraer los enlaces de los videos de la página web.
@@ -9,13 +8,11 @@
     ```bash
     pip install beautifulsoup4
     ```
-
 # Uso
-
 Ejecuta el script en la terminal con los siguientes parámetros:
-
 ```bash
 python ani-pyEs.py $NombreAnime $NumeroCapitulo
 ```
+
 # DISCLAIMER
 En estos momentos es solo una versión incial que requiere trabajo para poder encontrar los capítulos como es debido. Solo lo he testeado con un par de animes.
