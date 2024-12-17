@@ -4,6 +4,7 @@ import requests
 import subprocess
 from bs4 import BeautifulSoup
 import sys
+import json
 
 def get_html_content(referer, url_page, agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/121.0"):
 
@@ -30,11 +31,12 @@ if len(sys.argv) != 3:
     print("Se deben proporcionar dos parámetros: video_id y episode_id")
     sys.exit(1)
 
-# ================== PARAMETROS ================== #
+# ================== MAIN ================== #
 
 # Obtener los parámetros del terminal (los índices 1 y 2)
 video_id = sys.argv[1]
 episode_id = sys.argv[2]
+referer = "https://www3.animeflv.net"
 
 # Crear la URL usando los parámetros proporcionados
 url_page = f"https://www3.animeflv.net/ver/{video_id}-{episode_id}"
@@ -42,13 +44,8 @@ url_page = f"https://www3.animeflv.net/ver/{video_id}-{episode_id}"
 # Imprimir la URL
 print("URL generada:", url_page)
 
-# ================== MAIN ================== #
-
-referer = "https://www3.animeflv.net"
-
 # Extraer JSON con enlaces
 html_content = get_html_content(referer, url_page)
-print(html_content)
 
 # Usamos BeautifulSoup para analizar el HTML
 soup = BeautifulSoup(html_content, 'html.parser')
@@ -56,20 +53,20 @@ soup = BeautifulSoup(html_content, 'html.parser')
 # Ahora, busca el script que contiene el objeto 'videos'
 script_tags = soup.find_all('script')
 
-import re
-
 # Usamos una expresión regular para encontrar el objeto 'videos'
 pattern = r'var videos = ({.*?});'
 match = re.search(pattern, html_content)
 
 if match:
     # Convertimos el string JavaScript a un diccionario de Python
-    import json
     videos_json = match.group(1)
     videos_data = json.loads(videos_json)
 
     # Ahora 'videos_data' es un diccionario Python que contiene los datos
+    print("Videos Scrappeados:")
+    print("##############################################################")
     print(videos_data)
+    print("##############################################################")
 else:
     print("No se encontró la variable 'videos'.")
 
